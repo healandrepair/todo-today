@@ -1,0 +1,15 @@
+<div>
+    <h2>Tasks for today:</h2>
+    <h4>Create a task</h4>
+    <app-task></app-task>
+    
+    <ul>
+        <li *ngFor="let item of taskList">
+            ID: {{item.id}}
+            Title: {{item.title}}
+            Description: {{item.description}}
+            byDate: {{item.byDate}}
+            <button (click)="removeTask(item)">Delete!</button>
+        </li>
+    </ul>
+</div>
