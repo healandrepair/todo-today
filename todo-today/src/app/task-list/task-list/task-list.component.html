@@ -1,15 +1,28 @@
-<div>
-    <h2>Tasks for today:</h2>
-    <h4>Create a task</h4>
-    <app-task></app-task>
+<div class="m-3">
+    <div class="container border border-success rounded bg-light">
+        <h1 class="text-center">Tasks for today:</h1>
+        <h4 class="text-center">Create a task</h4>
+        <app-task></app-task>
+    </div>
     
-    <ul>
-        <li *ngFor="let item of taskList">
-            ID: {{item.id}}
-            Title: {{item.title}}
-            Description: {{item.description}}
-            byDate: {{item.byDate}}
-            <button (click)="removeTask(item)">Delete!</button>
-        </li>
-    </ul>
+    <div class="container">
+        <ul class="list-group">
+            <li class="list-group-item m-2 rounded" *ngFor="let item of taskList">
+                <div class="d-flex justify-content-between">
+                    <p class="fw-bold">
+                        {{item.title}} 
+                    </p>
+                    Due By Date: {{item.byDate | date:'long'}}
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p *ngIf="item.description.length != 0" class="fst-italic ms-4">
+                            - {{item.description}}
+                        </p>
+                    </div>
+                    <button class="btn btn-success"(click)="removeTask(item)">Complete</button>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

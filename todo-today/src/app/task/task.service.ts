@@ -16,7 +16,7 @@ export class TaskService {
    }
 
   addTasks(task: Task) {
-    this.tasks.push(task)
+    this.tasks.unshift(task)
     
     const currentTasks = JSON.stringify(this.tasks);
     localStorage.setItem("taskList", currentTasks);

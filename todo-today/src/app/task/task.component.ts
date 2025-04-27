@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Task } from '../models/task';
 import { TaskService } from './task.service';
 
@@ -13,10 +13,14 @@ export class TaskComponent {
   constructor(private taskService : TaskService) {}
 
   taskFormGroup = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     description: new FormControl(''),
-    byDate: new FormControl(new Date())
+    byDate: new FormControl(new Date(), [Validators.required])
   })
+
+  today = new Date().toISOString().split('T')[0];
+
+  isModalOpen = false;
 
   onSubmit() {
     const taskElement : Task = {
@@ -27,5 +31,8 @@ export class TaskComponent {
     }
 
     this.taskService.addTasks(taskElement)
+    this.taskFormGroup.reset()
+    alert("Added")
   }
+  
 }
